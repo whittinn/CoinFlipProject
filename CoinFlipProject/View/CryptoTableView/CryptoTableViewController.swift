@@ -11,13 +11,15 @@ public class CryptoTableViewController: UIViewController {
     
     var vm = ViewModel()
     let customTableView = UITableView()
+    var dg = DispatchQueue(label: "myQueue", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .inherit, target: .main)
     
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        setTableView()
         fetchCryptoData()
         title = "Cryptocurrency"
-        setTableView()
+        
         setNavigationBar()
         
         

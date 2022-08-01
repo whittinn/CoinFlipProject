@@ -12,7 +12,7 @@ extension CryptoTableViewController: UITableViewDataSource, UITableViewDelegate 
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return vm.getCryptoCount()
-    
+        
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -21,7 +21,10 @@ extension CryptoTableViewController: UITableViewDataSource, UITableViewDelegate 
         //ViewModel methods to update TableViewCell at index.
         cell.nameLabel.text  =  vm.getCryptoName(index: indexPath.row)
         cell.priceChange.text = String(vm.getCryptoPriceChange(index: indexPath.row))
-        cell.imageView?.imageFromServerURL(coinImage: vm.getCryptoImage(index: indexPath.row))
+        
+        cell.imageView?.imageFromServerURL(coinImage: self.vm.getCryptoImage(index: indexPath.row))
+        
+        
         return cell
         
     }
@@ -37,7 +40,12 @@ extension CryptoTableViewController: UITableViewDataSource, UITableViewDelegate 
         vc.high24Label.text = String(vm.getCryptoHigh24(index: indexPath.row))
         vc.lastUpdatedLabel.text = vm.getCryptoLastUpdated(index: indexPath.row)
         vc.symbolLabel.text = vm.getCryptoSymbol(index: indexPath.row)
-        vc.coinImage.imageFromServerURL(coinImage: vm.getCryptoImage(index: indexPath.row))
+        vc.coinImage.imageFromServerURL(coinImage: self.vm.getCryptoImage(index: indexPath.row))
+        
+        
+        
+        
+        
         self.navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }
