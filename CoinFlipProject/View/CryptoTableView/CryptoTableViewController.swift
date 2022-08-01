@@ -7,13 +7,13 @@
 
 import UIKit
 
-class CryptoTableViewController: UIViewController {
+public class CryptoTableViewController: UIViewController {
     
     var vm = ViewModel()
     let customTableView = UITableView()
     
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         fetchCryptoData()
         title = "Cryptocurrency"

@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum LoginFieldErrors: Error {
+public enum LoginFieldErrors: Error {
     case UserNameFieldNoText
     case UserNameFieldNotEnoughCharacters
     case PasswordFieldNoText

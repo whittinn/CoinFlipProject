@@ -10,23 +10,23 @@ import UIKit
 
 extension CryptoTableViewController: UITableViewDataSource, UITableViewDelegate {
     
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return vm.getCryptoCount()
     
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CryptoTableViewCell
         cell.backgroundColor = UIColor.clear
         //ViewModel methods to update TableViewCell at index.
-        cell.nameLabel.text  =  "s"
+        cell.nameLabel.text  =  vm.getCryptoName(index: indexPath.row)
         cell.priceChange.text = String(vm.getCryptoPriceChange(index: indexPath.row))
         cell.imageView?.imageFromServerURL(coinImage: vm.getCryptoImage(index: indexPath.row))
         return cell
         
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let vc = DetailViewController()
         //Passed data at index to DetailView.

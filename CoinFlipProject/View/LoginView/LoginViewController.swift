@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+open class LoginViewController: UIViewController {
     
     var vm = ViewModel()
     
@@ -63,7 +63,7 @@ class LoginViewController: UIViewController {
     }()
     
     
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemMint
         //Navigation to CryptoTableView after validation.

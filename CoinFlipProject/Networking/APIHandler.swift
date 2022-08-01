@@ -7,14 +7,14 @@
 
 import Foundation
 
-class APIHandler{
+public class APIHandler{
     //Singleton property that provides access to API Call.
     static let shared = APIHandler()
     private init () {}
     //Async function that passes data to ViewModel. Uses generic Result type with enum cases of success and failure.
-    func apiFetch(completionHandler: @escaping (Result<Data,Error>)->()){
+    public func apiFetch(completionHandler: @escaping (Result<Data,Error>)->()){
         
-        guard let coinsURL = URL(string: "\(Constant.baseURL.rawValue) \(Constant.apiKey.rawValue)") else { return }
+        guard let coinsURL = URL(string: "\(Constant.baseURL.rawValue)\(Constant.apiKey.rawValue)") else { return }
         
         URLSession.shared.dataTask(with: coinsURL) { [weak self] data, response, error in
             

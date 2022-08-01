@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+public class DetailViewController: UIViewController {
     
     var cryptoName: UILabel = {
         let cryptoName = UILabel()
@@ -110,7 +110,7 @@ class DetailViewController: UIViewController {
         return layerView
     }()
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemMint
@@ -130,8 +130,8 @@ class DetailViewController: UIViewController {
         layerView.addSubview(lastUpdated)
         layerView.addSubview(lastUpdatedLabel)
         layerView.addSubview(symbol)
-//        layerView.addSubview(symbolLabel)
-//        layerView.addSubview(coinImage)
+        layerView.addSubview(symbolLabel)
+        layerView.addSubview(coinImage)
         view.addSubview(cryptoName)
         view.addSubview(layerView)
         
@@ -185,13 +185,13 @@ class DetailViewController: UIViewController {
         symbol.leftAnchor.constraint(equalTo: layerView.leftAnchor, constant: 20).isActive = true
         symbol.widthAnchor.constraint(equalToConstant: 200).isActive = true
         
-//        symbolLabel.topAnchor.constraint(equalTo: layerView.topAnchor, constant: 180).isActive = true
-//        symbolLabel.leftAnchor.constraint(greaterThanOrEqualTo: symbol.leftAnchor, constant: 130).isActive = true
-//        symbolLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
-//
-//        coinImage.topAnchor.constraint(equalTo: layerView.topAnchor, constant: 220).isActive = true
-//        coinImage.centerXAnchor.constraint(equalTo: layerView.centerXAnchor).isActive = true
-//        coinImage.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        symbolLabel.topAnchor.constraint(equalTo: layerView.topAnchor, constant: 180).isActive = true
+        symbolLabel.leftAnchor.constraint(greaterThanOrEqualTo: symbol.leftAnchor, constant: 130).isActive = true
+        symbolLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+
+        coinImage.topAnchor.constraint(equalTo: layerView.topAnchor, constant: 220).isActive = true
+        coinImage.centerXAnchor.constraint(equalTo: layerView.centerXAnchor).isActive = true
+        coinImage.widthAnchor.constraint(equalToConstant: 300).isActive = true
         
         
     }
