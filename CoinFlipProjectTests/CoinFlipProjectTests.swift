@@ -9,28 +9,80 @@ import XCTest
 @testable import CoinFlipProject
 
 class CoinFlipProjectTests: XCTestCase {
-
+    
+    var vm: ViewModel?
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        vm = ViewModel()
+        
+        vm?.myModel = [CryptocurrencyModel(symbol: "coin1", name: "firstCoin", image: ".url", currentPrice: 1.00, totalVolume: 1.00, high24H: 2.00, low24H: 1.00, priceChange24H: 1.00, lastUpdated: "today"), CryptocurrencyModel(symbol: "coin2", name: "secondCoin", image: ".url2", currentPrice: 2.00, totalVolume: 2.00, high24H: 2.00, low24H: 1.00, priceChange24H: 2.00, lastUpdated: "yesterday")]
     }
-
+    
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        vm = nil
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func testGetCryptoSymbol(){
+        XCTAssertEqual(vm?.getCryptoSymbol(index: 0), "coin1")
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testGetCryptoName(){
+        XCTAssertEqual(vm?.getCryptoName(index: 0), "firstCoin")
     }
-
+    
+    func testGetCryptoPrice(){
+        XCTAssertEqual(vm?.getCryptoPriceChange(index: 0), 1.00)
+    }
+    
+    func testGetCryptoVolume(){
+        XCTAssertEqual(vm?.getCryptoVolume(index: 0), 1.00)
+    }
+    
+    func testGetCryptoHigh24(){
+        XCTAssertEqual(vm?.getCryptoHigh24(index: 0), 2.00)
+    }
+    
+    func testGetCryptoLow24(){
+        XCTAssertEqual(vm?.getCryptoLow24(index: 0), 1.00)
+    }
+    
+    func testGetPriceChange(){
+        XCTAssertEqual(vm?.getCryptoPriceChange(index: 0), 1.00)
+    }
+    
+    func testGetLastUpdated(){
+        XCTAssertEqual(vm?.getCryptoLastUpdated(index: 0), "today")
+    }
+    
+    func testGetArrayCount(){
+        XCTAssertEqual(vm?.myModel?.count, 2)
+    }
+    
+    func testIfUserNameFieldHasText(){
+        XCTAssertTrue(((try vm?.validateUserNameFieldIsEmpty(text: "1")) != nil))
+    }
+    
+    func testIfUserNameFieldHasCount(){
+        XCTAssertTrue(((try vm?.validateUserNameFieldCount(text: "1234567")) != nil))
+    }
+    
+    func testIfPasswordFieldHasText(){
+        XCTAssertTrue(((try vm?.validatePasswordFieldIsEmpty(text: "1")) != nil))
+    }
+    
+    func testIfPasswordFieldHasCount(){
+        XCTAssertTrue(((try vm?.validatePasswordFieldCount(text: "1234567")) != nil))
+    }
+    
+    func testfetchWeather() {
+        
+        let expectation = expectation(description: "fetchWeather")
+        
+        vm?.getCryptoInfo(completionHandler: { data in
+            XCTAssertNotNil(data)
+            expectation.fulfill()
+        })
+        wait(for: [expectation], timeout: 5)
+    }
+    
 }
