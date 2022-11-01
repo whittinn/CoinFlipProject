@@ -108,6 +108,7 @@ import Foundation
         guard let text = text, !text.isEmpty else {
             throw LoginFieldErrors.PasswordFieldNoText
         }
+        
         return true
     }
     
